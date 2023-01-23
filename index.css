@@ -1,0 +1,177 @@
+
+*{
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  
+}
+
+.blog-container{
+display: flex;
+flex-direction: column;
+gap: 1rem;
+align-items: center;
+padding: 1em 2em;
+}
+
+.post-card{
+  color: black;
+  background-color: #e6e6e6;
+  max-width: 600px;
+  min-width: 300px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor:pointer
+}
+
+.post-card:hover{
+  filter: drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 10px 8px rgb(0 0 0 / 0.08)) hue-rotate(10deg); 
+}
+
+
+.post-card h1{
+  font-size: 2rem;
+  color: blueviolet;
+  margin-bottom: 1rem;
+  text-transform: capitalize;
+}
+
+.post-card p{
+  line-height: 1.6;
+  font-size: 1rem;
+  font-family: Helvetica, sans-serif;
+}
+
+
+/* Nav Bar */
+
+.nav-bar{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2em 10vw;
+  background: blueviolet;
+  height: 10vh;
+  margin-bottom: 2em;
+  box-shadow: 2px 2px 4px #e6e6e6;
+  position: sticky;
+}
+
+.blog-heading{
+  font-family: 'Sofia Sans', sans-serif;
+  font-size: 3rem;
+  color: whitesmoke;
+}
+
+/* Form */
+
+.new-post-form{
+  width: 50vw;
+  max-width: 700px;
+  min-width: 450px;
+  height:75vh;
+  padding: 2em;
+  background-color: #f3e5ff ;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5em;
+  margin: auto;
+  border-radius: 1em;
+  box-shadow: 2px 2px 4px #e6e6e6;
+}
+
+.label{
+  margin-bottom: 0.2em;
+  font-size: 1.7rem;
+  font-family: 'Sofia Sans', sans-serif;
+  color: blueviolet;
+}
+
+.input{
+  margin-bottom: 1em;
+  border: none;
+  border-radius: .2em;
+}
+
+.title-input{
+  height: 10%;
+  width: 70%;
+  margin-bottom: 2em;
+  font-family: Helvetica;
+  font-size: 1.5rem;
+  line-height: 1.4;
+  padding: 0.5em;
+  
+}
+
+.content-area{
+  width: 100%;
+  height: 60%;
+   
+}
+
+textarea{
+  resize: none;
+  font-family: Helvetica;
+  font-size: 1rem;
+  line-height: 1.4;
+  padding: 1em;
+}
+
+
+
+.btn{
+  color: blueviolet;
+  background: whitesmoke;
+  border: none;
+  font-family: 'Sofia Sans';
+  font-size: 1.1rem;
+  padding: 0.5em 1.5em;
+  border-radius: 0.2em;
+  cursor:pointer;
+}
+
+.btn:hover{
+ filter: drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 10px 8px rgb(0 0 0 / 0.08)) hue-rotate(180deg);
+
+}
+
+.publish-btn{
+  background: blueviolet;
+  color: whitesmoke;
+  border: none;
+  font-family: 'Sofia Sans';
+  font-size: 1.1rem;
+  padding: 0.5em 1.5em;
+  border-radius: 0.2em;
+}
+
+
+/* Modal */
+
+.new-post-form{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/*lightning  */
+
