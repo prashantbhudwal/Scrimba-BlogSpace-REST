@@ -1,5 +1,3 @@
-
-
 const log = (prompt="Testing Testing") => console.log(prompt)
 const $ = (id) => document.getElementById(id)
 
