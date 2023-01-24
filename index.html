@@ -1,39 +1,48 @@
 <html>
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sofia+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="index.css" />
+  </head>
 
-<head>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sofia+Sans&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="index.css">
-</head>
-
-<body>
-  <div class="dummy-nav"></div>
-  <div class="nav-bar" id="nav-bar">
-    <h1 class="blog-heading">BlogSpace</h1>
-    <button class="btn" id="new-post-btn"> New </button>
-  </div>
-
-<div class="modal-overlay" id="modal-overlay">
-  <form id="new-post-form" class="new-post-form">
-    <label for="title" class="label">Title</label>
-    <input type="text" id="title" name="title" class="input title-input" ired>
-
-    <label for="content-area" class="label">Content</label>
-    <textarea id="content-area" name="content" class="input content-area"></textarea>
-    <div class='action-bar'>
-    <button id='publish-btn'class="publish-btn btn" type="button">
-      Publish
-    </button>
-    <button class="btn" id="discard-btn">Discard</button>
+  <body>
+    <div class="dummy-nav"></div>
+    <div class="nav-bar" id="nav-bar">
+      <h1 class="blog-heading">BlogSpace</h1>
+      <button class="btn" id="new-post-btn">New</button>
     </div>
-  </form>
-</div>
-  <div class="blog-container" id="blog-container">
-  </div>
 
-  <script src="index.js"></script>
-</body>
+    <div class="modal-overlay" id="modal-overlay">
+      <form id="new-post-form" class="new-post-form">
+        <label for="title" class="label">Title</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          class="input title-input"
+          ired
+        />
 
+        <label for="content-area" class="label">Content</label>
+        <textarea
+          id="content-area"
+          name="content"
+          class="input content-area"
+        ></textarea>
+        <div class="action-bar">
+          <button id="publish-btn" class="publish-btn btn" type="button">
+            Publish
+          </button>
+          <button class="btn" id="discard-btn">Discard</button>
+        </div>
+      </form>
+    </div>
+    <div class="blog-container" id="blog-container"></div>
+
+    <script src="index.js"></script>
+  </body>
 </html>
-
