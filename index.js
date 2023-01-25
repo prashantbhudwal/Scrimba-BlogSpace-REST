@@ -1,4 +1,5 @@
-const log = (prompt = "Testing Testing") => console.log(prompt);
+import getPostHtml from "./getPostHtml.js";
+
 const $ = (id) => document.getElementById(id);
 
 const element = {
@@ -7,8 +8,15 @@ const element = {
   modalOverlay: $("modal-overlay"),
   discardBtn: $("discard-btn"),
   publishBtn: $("publish-btn"),
-  title: $("title"),
-  content: $("content-area"),
+};
+
+const modalEvents = {
+  openModal: () => {
+    element.modalOverlay.style.display = "block";
+  },
+  closeModal: () => {
+    element.modalOverlay.style.display = "none";
+  },
 };
 
 const url = {
@@ -17,36 +25,41 @@ const url = {
   todos: "/todos",
 };
 
-element.newPostBtn.addEventListener(
-  "click",
-  () => (element.modalOverlay.style.display = "block")
-);
+element.newPostBtn.addEventListener("click", modalEvents.openModal);
 
-element.discardBtn.addEventListener(
-  "click",
-  () => (element.modalOverlay.style.display = "none")
-);
+element.discardBtn.addEventListener("click", modalEvents.closeModal);
+
+const getDraftDOMInputs = function () {
+  const draftTitle = document.getElementById("title").value;
+  const draftBody = document.getElementById("content-area").value;
+  return { draftTitle, draftBody };
+};
+
+const getDraftObject = function getDraftObject() {
+  const { draftTitle, draftBody } = getDraftDOMInputs();
+  return {
+    title: draftTitle,
+    body: draftBody,
+  };
+};
 
 element.publishBtn.addEventListener("click", (event) => {
   event.preventDefault();
-
-  let draftData = {
-    title: element.title.value,
-    content: element.content.value,
-  };
-  publish(draftData);
+  let draftDataObject = getDraftObject();
+  publish(draftDataObject);
+  modalEvents.closeModal();
 });
 
 const renderBlog = (blogArray) => {
   blogArray.forEach((item) => {
-    const postHtml = `<div class = "post-card">
-                      <h1>${item.title.slice(0, 40)}</h1>
-                      <p>${item.body.slice(0, 300)}</p>
-                      </div>
-                        `;
-
+    const postHtml = getPostHtml(item);
     element.blogContainer.innerHTML += postHtml;
   });
+};
+
+const renderNewPost = function renderNewPost(newPostJson) {
+  const newPostHtml = getPostHtml(newPostJson);
+  element.blogContainer.insertAdjacentHTML("afterbegin", newPostHtml);
 };
 
 fetch(url.base + url.posts, { method: `GET` })
@@ -55,11 +68,18 @@ fetch(url.base + url.posts, { method: `GET` })
     return renderBlog(json.slice(0, 50));
   });
 
-const publish = (draftData) => {
-  fetch(url.base + url.todos, {
-    method: `POST`,
-    body: JSON.stringify(draftData),
-  })
+const publish = (draftDataObject) => {
+  const options = {
+    method: "POST",
+    body: JSON.stringify(draftDataObject),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  fetch(url.base + url.todos, options)
     .then((response) => response.json())
-    .then((json) => log(json));
+    .then((json) => {
+      renderNewPost(json);
+    });
 };
