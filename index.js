@@ -17,24 +17,6 @@ const url = {
   todos: "/todos",
 };
 
-const renderBlog = (blogArray) => {
-  blogArray.forEach((item) => {
-    const postHtml = `<div class = "post-card">
-                      <h1>${item.title.slice(0, 40)}</h1>
-                      <p>${item.body.slice(0, 300)}</p>
-                      </div>
-                        `;
-
-    element.blogContainer.innerHTML += postHtml;
-  });
-};
-
-fetch(url.base + url.posts, { method: `GET` })
-  .then((response) => response.json())
-  .then((json) => {
-    return renderBlog(json.slice(0, 50));
-  });
-
 element.newPostBtn.addEventListener(
   "click",
   () => (element.modalOverlay.style.display = "block")
@@ -54,6 +36,24 @@ element.publishBtn.addEventListener("click", (event) => {
   };
   publish(draftData);
 });
+
+const renderBlog = (blogArray) => {
+  blogArray.forEach((item) => {
+    const postHtml = `<div class = "post-card">
+                      <h1>${item.title.slice(0, 40)}</h1>
+                      <p>${item.body.slice(0, 300)}</p>
+                      </div>
+                        `;
+
+    element.blogContainer.innerHTML += postHtml;
+  });
+};
+
+fetch(url.base + url.posts, { method: `GET` })
+  .then((response) => response.json())
+  .then((json) => {
+    return renderBlog(json.slice(0, 50));
+  });
 
 const publish = (draftData) => {
   fetch(url.base + url.todos, {
