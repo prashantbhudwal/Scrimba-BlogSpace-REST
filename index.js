@@ -1,4 +1,5 @@
 import getPostHtml from "./getPostHtml.js";
+import url from "./url.js";
 
 const $ = (id) => document.getElementById(id);
 
@@ -17,12 +18,6 @@ const modalEvents = {
   closeModal: () => {
     element.modalOverlay.style.display = "none";
   },
-};
-
-const url = {
-  base: "https://apis.scrimba.com/jsonplaceholder",
-  posts: "/posts",
-  todos: "/todos",
 };
 
 element.newPostBtn.addEventListener("click", modalEvents.openModal);
@@ -46,7 +41,7 @@ const getDraftObject = function getDraftObject() {
 element.publishBtn.addEventListener("click", (event) => {
   event.preventDefault();
   let draftDataObject = getDraftObject();
-  publish(draftDataObject);
+  publishDraft(draftDataObject);
   modalEvents.closeModal();
 });
 
@@ -62,13 +57,17 @@ const renderNewPost = function renderNewPost(newPostJson) {
   element.blogContainer.insertAdjacentHTML("afterbegin", newPostHtml);
 };
 
-fetch(url.base + url.posts, { method: `GET` })
-  .then((response) => response.json())
-  .then((json) => {
-    return renderBlog(json.slice(0, 50));
-  });
+const fetchPosts = function fetchPostsFromApi() {
+  fetch(url.base + url.posts, { method: `GET` })
+    .then((response) => response.json())
+    .then((json) => {
+      return renderBlog(json.slice(0, 50));
+    });
+};
 
-const publish = (draftDataObject) => {
+fetchPosts();
+
+const publishDraft = (draftDataObject) => {
   const options = {
     method: "POST",
     body: JSON.stringify(draftDataObject),
