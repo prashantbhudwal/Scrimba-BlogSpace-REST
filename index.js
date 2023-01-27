@@ -11,12 +11,19 @@ const element = {
   publishBtn: $("publish-btn"),
 };
 
+const modalElements = {
+  title: $("title"),
+  body: $("content-area"),
+};
+
 const modalEvents = {
   openModal: () => {
     element.modalOverlay.style.display = "block";
   },
   closeModal: () => {
     element.modalOverlay.style.display = "none";
+    modalElements.title.value = "";
+    modalElements.body.value = "";
   },
 };
 
@@ -42,8 +49,8 @@ element.publishBtn.addEventListener("click", (event) => {
 });
 
 const getDraftDOMInputs = function () {
-  const draftTitle = document.getElementById("title").value;
-  const draftBody = document.getElementById("content-area").value;
+  const draftTitle = modalElements.title.value;
+  const draftBody = modalElements.title.value;
   return { draftTitle, draftBody };
 };
 
